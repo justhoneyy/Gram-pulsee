@@ -991,6 +991,12 @@ await migrate(db);
 if (process.env.SEED_PASSWORD) {
   const created = await seed(db);
   console.log(created ? "Demo data seeded." : "Database already contains data; seed skipped.");
+  if (process.env.RESET_PASSWORDS === "true") {
+    const hash = await hashPassword(process.env.SEED_PASSWORD);
+    await db.query("UPDATE users SET password_hash=$1 WHERE email IN ('admin@gram-pulse.demo','officer@gram-pulse.demo','citizen@gram-pulse.demo')", [hash]);
+    await db.query("DELETE FROM sessions");
+    console.log("Demo account passwords reset to SEED_PASSWORD. Remove RESET_PASSWORDS now.");
+  }
 } else {
   const users = await db.query("SELECT 1 FROM users LIMIT 1");
   if (!users.length) console.warn("No users exist and SEED_PASSWORD is not set. Set SEED_PASSWORD (12+ characters) and redeploy to create the demo accounts.");
