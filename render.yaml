@@ -1,16 +1,26 @@
+# Optional Render Blueprint: New > Blueprint > pick this repo. Creates the database and the web service together.
+databases:
+  - name: gram-pulse-db
+    databaseName: grampulse
+    user: grampulse
+    plan: free
+
 services:
   - type: web
     name: gram-pulse
     runtime: node
     plan: free
     buildCommand: npm install
-    startCommand: npm start
-    healthCheckPath: /healthz
+    startCommand: node server.js
+    healthCheckPath: /api/health
     envVars:
+      - key: NODE_VERSION
+        value: 22
+      - key: NODE_ENV
+        value: production
       - key: DATABASE_URL
         fromDatabase:
           name: gram-pulse-db
           property: connectionString
-databases:
-  - name: gram-pulse-db
-    plan: free
+      - key: SEED_PASSWORD
+        generateValue: true
