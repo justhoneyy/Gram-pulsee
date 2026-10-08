@@ -44,6 +44,8 @@ async function connect() {
     ssl: useSsl ? { rejectUnauthorized: false } : void 0
   });
   pool.on("error", (err) => console.error("PostgreSQL pool error:", err.message));
+  // Keep every table in its own schema so this app never collides with other tables in a shared database.
+  pool.on("connect", (client) => { client.query("SET search_path TO gram_pulse"); });
   const wrap = (client) => ({
     query: async (sql, params = []) => (await client.query(sql, params)).rows,
     transaction: async (fn) => {
@@ -79,7 +81,8 @@ async function connect() {
 async function migrate(db2) {
   await db2.transaction(async (tx) => {
     await tx.query("SELECT pg_advisory_xact_lock(727201)");
-    const exists = await tx.query("SELECT 1 FROM information_schema.tables WHERE table_schema=current_schema() AND table_name='schema_migrations'");
+    await tx.query("CREATE SCHEMA IF NOT EXISTS gram_pulse");
+    const exists = await tx.query("SELECT 1 FROM information_schema.tables WHERE table_schema='gram_pulse' AND table_name='schema_migrations'");
     if (exists.length) return;
     for (const statement of SCHEMA.split(";").map((s) => s.trim()).filter(Boolean)) await tx.query(statement);
     console.log("Database schema created.");
