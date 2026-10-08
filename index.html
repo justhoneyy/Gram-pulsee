@@ -41,30 +41,45 @@ nav .plus{width:56px;height:56px;border-radius:50%;background:var(--olive);color
 .toast{position:absolute;left:50%;top:18px;transform:translateX(-50%);background:#1f2a1c;color:#fff;padding:10px 18px;border-radius:999px;font-size:12px;font-weight:700;z-index:50;display:none}
 
 .g,.dash{display:block}.brand,.pl{display:none}:focus-visible{outline:3px solid #7fb68a;outline-offset:2px}
+/* shared polish (all sizes) */
+.empty{grid-column:1/-1}.pill{white-space:nowrap}
+.top.bar{display:flex;justify-content:space-between;align-items:flex-end;gap:12px;flex-wrap:wrap}.top.bar .big{height:44px;padding:0 20px;font-size:13px;flex:none}
+.big,.pill,.chip,.x,.link,nav button{transition:background .15s,filter .15s,transform .1s,box-shadow .15s}.big:active,.pill:active,.chip:active{transform:scale(.97)}
+.split{display:block}.ctl{display:block}
+@media(hover:hover){.big:hover{filter:brightness(1.08)}.big.ghost:hover{filter:none;background:var(--sage2)}.pill:hover{background:var(--sage2)}.chip:hover{border-color:var(--olive)}.x:hover{background:var(--sage2)}.link:hover{text-decoration:underline}}
 @media(min-width:820px){
 body{display:block;background:linear-gradient(135deg,#f6f1fa,#faf8f2 40%,#f1f6ee)}
 .phone{max-width:none;max-height:none;width:100%;height:100vh;border-radius:0;box-shadow:none;background:transparent;display:grid;grid-template-columns:264px minmax(0,1fr)}
-nav{position:static;grid-column:1;grid-row:1;height:auto;margin:16px 0 16px 16px;border-radius:28px;padding:22px 14px;flex-direction:column;justify-content:flex-start;gap:6px;box-shadow:var(--sh)}
+nav{position:static;grid-column:1;grid-row:1;align-self:start;height:auto;margin:16px 0 16px 16px;border-radius:28px;padding:22px 14px;flex-direction:column;justify-content:flex-start;align-items:stretch;gap:6px;box-shadow:var(--sh)}
 .brand{order:-2;display:flex;align-items:center;gap:10px;font-weight:800;font-size:17px;padding:2px 12px 20px;color:var(--olive)}
 nav button{width:100%;height:46px;flex-direction:row;justify-content:flex-start;gap:12px;padding:0 16px;border-radius:999px;font-size:14px}
-nav button:hover{background:var(--sage2)}nav button.on{background:var(--olive);color:#fff}
-nav .plus{order:-1;margin:0 0 12px;height:50px;justify-content:center;background:var(--olive);color:#fff;box-shadow:0 14px 24px -12px var(--olive)}nav .plus svg{width:20px;height:20px}.pl{display:inline}
+nav button:hover{background:var(--sage2);color:var(--olive)}nav button.on,nav button.on:hover{background:var(--olive);color:#fff}
+nav .plus{order:-1;width:100%;height:50px;margin:0 0 14px;border-radius:999px;justify-content:center;background:var(--olive);color:#fff;font-size:14px;font-weight:700;box-shadow:0 14px 24px -12px var(--olive)}
+nav .plus:hover{background:#4d6823;color:#fff}nav .plus svg{width:20px;height:20px}.pl{display:inline}
 main{grid-column:2;grid-row:1;padding-bottom:30px}
-.w{max-width:1120px;margin:0 auto;padding:20px 32px 40px}.w.n{max-width:760px}
+.w,.w.n{max-width:1120px;margin:0 auto;padding:20px 32px 40px}
 .w>*:not(.step){margin-left:0;margin-right:0}
 .w .top,.w .sec,.w .chips{padding-left:0;padding-right:0}
 .top h1{font-size:30px}.sec h2{font-size:18px}
 .hero{height:270px;border-radius:32px;background:linear-gradient(#d6ecdf 0 60%,#bfe0a0 60% 76%,#a4d083 76%)}
-.hero svg.art{position:absolute;right:2%;bottom:0;width:auto;height:100%;aspect-ratio:360/230}
-.hero h1{left:48px;right:auto;text-align:left;top:60px;font-size:32px}.hero small{font-size:14px;margin-top:6px}
-.w>.search{max-width:560px;margin:-26px auto 0}
+.hero svg.art{position:absolute;right:0;bottom:0;width:auto;height:100%;aspect-ratio:360/230;-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 14%);mask-image:linear-gradient(90deg,transparent 0,#000 14%)}
+.hero svg.art .cloud{display:none}
+.hero h1{left:48px;right:auto;text-align:left;top:60px;font-size:32px;z-index:2}.hero small{font-size:14px;margin-top:6px}
+.w>.search{max-width:560px;margin:-26px auto 0;z-index:3}
 .dash{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.3fr);gap:16px;margin-top:18px}
 .dash .status{margin:0}.dash .kpis{padding:0;grid-template-columns:repeat(2,1fr)}.kpi{padding:18px 8px}.kpi b{font-size:26px}.kpi span{font-size:12px}
 .g{display:grid;grid-template-columns:repeat(auto-fill,minmax(330px,1fr));gap:14px}.g .card{margin:0;transition:transform .15s}
 @media(hover:hover){.card.c:hover{transform:translateY(-2px)}}
-.w .sel{max-width:420px;margin-left:0}.w .row{max-width:460px}.w .range{max-width:520px}
+/* two-column tool pages (simulate, budget) */
+.split{display:grid;grid-template-columns:minmax(300px,380px) minmax(0,1fr);gap:24px;align-items:start;margin-top:16px}
+.ctl{background:#fff;border-radius:28px;box-shadow:var(--sh);padding:20px}
+.w .ctl .sel,.w .ctl .row,.w .ctl .range{max-width:none;width:100%;margin:0 0 14px}.w .ctl .row:last-child{margin-bottom:0}
+.w .ctl .row .big{width:100%}
+.split .status{margin:0 0 14px}.split .cmp{margin:0 0 14px}.split .card{margin:0 0 12px}.split .step{margin-right:0}
+.split .sec{padding-top:8px}
 .back{align-items:center;justify-content:center}.sheet{width:min(560px,92%);border-radius:28px;max-height:88%}
 .toast{top:24px}}
+@media(min-width:820px) and (max-width:1100px){.dash{grid-template-columns:1fr}.dash .kpis{grid-template-columns:repeat(4,1fr)}.split{grid-template-columns:1fr}}
 </style></head><body><div class="phone"><main id="v"></main>
 <nav><div class="brand"><i data-lucide="tent"></i>GRAM-PULSE</div><button data-p="home"><i data-lucide="house"></i>Home</button><button data-p="assets"><i data-lucide="layers"></i>Assets</button><button class="plus" id="np" aria-label="New report"><i data-lucide="plus"></i><span class="pl">New report</span></button><button data-p="sim"><i data-lucide="activity"></i>Simulate</button><button data-p="budget"><i data-lucide="wallet"></i>Budget</button></nav>
 <div class="back" id="bk"><div class="sheet" id="sh"></div></div><div class="toast" id="t"></div></div>
@@ -76,8 +91,8 @@ const view=(h,n)=>{$('#v').innerHTML='<div class="w'+(n?' n':'')+'">'+h+'</div>'
 const sheet=h=>{$('#sh').innerHTML=h;$('#bk').classList.add('on');lucide.createIcons()},close=()=>$('#bk').classList.remove('on');
 $('#bk').onclick=e=>{if(e.target.id==='bk')close()};
 let page='home',A=[],F='All',simId=0,budget=10;
-const SCENE=`<svg class="art" viewBox="0 0 360 230" preserveAspectRatio="xMidYMid slice"><g stroke="#4f5f45" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"><circle cx="290" cy="52" r="24" fill="#fbe6a2"/><path d="M40 70c-10 0-12-14 0-15 3-9 18-10 22-2 9-1 15 8 8 15z" fill="#fffdf6"/><path d="M0 130c60-40 120-30 180-5s120 10 180-20v125H0z" fill="#bfe0a0"/><path d="M0 175c70-30 130-20 200 0s110 10 160-10v65H0z" fill="#a4d083"/><g fill="#3f7d4a"><path d="M30 190l26-80 26 80z"/><path d="M300 188l22-68 22 68z"/></g><path d="M118 222l62-100 64 100z" fill="#e8793a"/><path d="M180 122l-24 100h48z" fill="#fbd7b3"/><path d="M180 122v100" fill="none"/></g></svg>`;
-async function go(p){page=p;document.querySelectorAll('nav [data-p]').forEach(b=>b.classList.toggle('on',b.dataset.p===p));try{await({home,assets,sim,budgetV}[p])()}catch(e){view(`<div class="empty">Cannot reach the server.<br>Run <b>npm start</b> and open http://localhost:3000</div>`)}}
+const SCENE=`<svg class="art" viewBox="0 0 360 230" preserveAspectRatio="xMidYMid slice"><g stroke="#4f5f45" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"><circle cx="290" cy="52" r="24" fill="#fbe6a2"/><path class="cloud" d="M40 70c-10 0-12-14 0-15 3-9 18-10 22-2 9-1 15 8 8 15z" fill="#fffdf6"/><path d="M0 130c60-40 120-30 180-5s120 10 180-20v125H0z" fill="#bfe0a0"/><path d="M0 175c70-30 130-20 200 0s110 10 160-10v65H0z" fill="#a4d083"/><g fill="#3f7d4a"><path d="M30 190l26-80 26 80z"/><path d="M300 188l22-68 22 68z"/></g><path d="M118 222l62-100 64 100z" fill="#e8793a"/><path d="M180 122l-24 100h48z" fill="#fbd7b3"/><path d="M180 122v100" fill="none"/></g></svg>`;
+async function go(p){page=p;document.querySelectorAll('nav [data-p]').forEach(b=>b.classList.toggle('on',b.dataset.p===p));try{await({home,assets,sim,budget:budgetV}[p])()}catch(e){view(`<div class="empty">Cannot reach the server.<br>Run <b>npm start</b> and open http://localhost:3000</div>`)}}
 document.querySelectorAll('nav [data-p]').forEach(b=>b.onclick=()=>go(b.dataset.p));$('#np').onclick=()=>reportForm();
 const assetCard=a=>`<div class="card c" onclick="detail(${a.id})">${ic(a.type)}<div class="grow"><b>${esc(a.name)}</b><span>Ward ${a.ward} · ${a.pop} people · condition ${a.cond}%</span></div><div class="tag ${a.risk}">${a.risk}</div></div>`;
 async function home(){const[s,r]=await Promise.all([api('summary'),api('reports')]);A=await api('assets');
@@ -90,7 +105,7 @@ view(`<div class="hero">${SCENE}<h1>Hello, Panchayat<small>Adarsh Gram · villag
 <div class="g">${r.length?r.map(x=>`<div class="card"><div class="ico" style="background:var(--peach)"><i data-lucide="message-square-text"></i></div><div class="grow"><b>${esc(x.cat)} · Ward ${x.ward}</b><span>${esc(x.text)}</span></div><button class="x" aria-label="Delete report" onclick="delReport(${x.id})"><i data-lucide="trash-2"></i></button></div>`).join(''):'<div class="empty">No reports yet. Tap + to submit one.</div>'}</div>`)}
 function go2(q){q=q.toLowerCase();const l=A.filter(a=>a.name.toLowerCase().includes(q)||a.type.toLowerCase().includes(q));$('#res').innerHTML=`<div class="sec"><h2>${q?'Results':'Priority alerts'}</h2></div>`+'<div class="g">'+(l.length?l.slice(0,q?20:3).map(assetCard).join(''):'<div class="empty">No matching assets</div>')+'</div>';lucide.createIcons()}
 async function assets(){A=await api('assets');const l=A.filter(a=>F==='All'||a.type===F);
-view(`<div class="top"><h1>Assets</h1><p>Ranked by modeled impact and dependency exposure</p></div><div class="chips">${['All',...TYPES].map(t=>`<button class="chip ${t===F?'on':''}" onclick="F='${t}';assets()">${t}</button>`).join('')}</div><div class="g">${l.map(assetCard).join('')||'<div class="empty">No assets of this type</div>'}</div><div class="row"><button class="big" onclick="assetForm()"><i data-lucide="plus"></i>Add asset</button></div>`)}
+view(`<div class="top bar"><div><h1>Assets</h1><p>Ranked by modeled impact and dependency exposure</p></div><button class="big" onclick="assetForm()"><i data-lucide="plus"></i>Add asset</button></div><div class="chips">${['All',...TYPES].map(t=>`<button class="chip ${t===F?'on':''}" onclick="F='${t}';assets()">${t}</button>`).join('')}</div><div class="g">${l.map(assetCard).join('')||'<div class="empty">No assets of this type</div>'}</div>`)}
 function detail(id){const a=A.find(x=>x.id===id);if(!a)return;const d=A.find(x=>x.id===a.dep);
 sheet(`<h2>${esc(a.name)}<button class="x" onclick="close()" aria-label="Close"><i data-lucide="x"></i></button></h2><div class="tag ${a.risk}" style="display:inline-block">${a.risk} risk · score ${a.score}</div>
 <div class="facts"><div class="fact">${ic(a.type)}<div><small>Type</small><b>${a.type}</b></div></div><div class="fact"><div class="ico" style="background:var(--peach)"><i data-lucide="users"></i></div><div><small>People affected</small><b>${a.affected}</b></div></div><div class="fact"><div class="ico" style="background:var(--butter)"><i data-lucide="gauge"></i></div><div><small>Condition</small><b>${a.cond}%</b></div></div><div class="fact"><div class="ico" style="background:var(--lav)"><i data-lucide="indian-rupee"></i></div><div><small>Repair cost</small><b>₹${a.cost}L</b></div></div></div>
@@ -111,9 +126,9 @@ async function reportForm(){A=await api('assets');sheet(`<h2>Report an issue<but
 async function saveReport(){try{await api('reports','POST',{name:$('#rn').value,cat:$('#rc').value,ward:$('#rw').value,asset:$('#ra').value,text:$('#rt').value});close();toast('Report submitted');go(page)}catch(e){fail(e)}}
 async function delReport(id){try{await api('reports/'+id,'DELETE');go('home')}catch(e){fail(e)}}
 async function sim(){A=await api('assets');if(!simId||!A.find(a=>a.id===simId))simId=A[0]?.id||0;
-view(`<div class="top"><h1>Simulate failure</h1><p>Trace how one failure cascades through connected assets</p></div><select class="sel" onchange="simId=+this.value">${A.map(a=>`<option value="${a.id}" ${a.id===simId?'selected':''}>${esc(a.name)}</option>`).join('')}</select><div class="row"><button class="big" onclick="runSim()"><i data-lucide="play"></i>Run simulation</button></div><div id="out"></div>`,1)}
+view(`<div class="top"><h1>Simulate failure</h1><p>Trace how one failure cascades through connected assets</p></div><div class="split"><div class="ctl"><select class="sel" onchange="simId=+this.value">${A.map(a=>`<option value="${a.id}" ${a.id===simId?'selected':''}>${esc(a.name)}</option>`).join('')}</select><div class="row"><button class="big" onclick="runSim()"><i data-lucide="play"></i>Run simulation</button></div></div><div id="out"><div class="empty">Pick an asset and run the simulation to see the cascade.</div></div></div>`,1)}
 async function runSim(){try{const r=await api('simulate','POST',{id:simId});$('#out').innerHTML=`<div class="status" style="background:var(--rose)"><div style="flex:1"><h3>${r.people} people affected</h3><p>${esc(r.root.name)} fails and disrupts ${r.steps.length} connected asset${r.steps.length===1?'':'s'}.</p></div><i data-lucide="triangle-alert" style="width:34px;height:34px;color:#b8463d"></i></div><div class="sec"><h2>Cascade</h2></div>${r.steps.length?r.steps.map(s=>`<div class="step L${Math.min(s.level,3)}"><div class="card" style="margin:0">${ic(s.type)}<div class="grow"><b>${esc(s.name)}</b><span>Step ${s.level} · ${s.pop} people</span></div></div></div>`).join(''):'<div class="empty">Nothing depends on this asset.</div>'}`;lucide.createIcons()}catch(e){fail(e)}}
-async function budgetV(){view(`<div class="top"><h1>Budget planner</h1><p>Pick the interventions that give the most impact for the money</p></div><div class="range"><span style="font-size:12px;color:#59604f">Budget ceiling</span><br><b id="bl">₹${budget}L</b><input type="range" min="1" max="20" step="0.5" value="${budget}" oninput="budget=+this.value;$('#bl').textContent='₹'+budget+'L'"></div><div class="row"><button class="big" onclick="runBudget()"><i data-lucide="sparkles"></i>Generate plan</button></div><div id="out"></div>`,1)}
+async function budgetV(){view(`<div class="top"><h1>Budget planner</h1><p>Pick the interventions that give the most impact for the money</p></div><div class="split"><div class="ctl"><div class="range"><span style="font-size:12px;color:#59604f">Budget ceiling</span><br><b id="bl">₹${budget}L</b><input type="range" min="1" max="20" step="0.5" value="${budget}" oninput="budget=+this.value;$('#bl').textContent='₹'+budget+'L'"></div><div class="row"><button class="big" onclick="runBudget()"><i data-lucide="sparkles"></i>Generate plan</button></div></div><div id="out"><div class="empty">Set a budget and generate a plan to see recommendations.</div></div></div>`,1)}
 async function runBudget(){try{const r=await api('budget','POST',{budget});$('#out').innerHTML=`<div class="cmp"><div style="background:var(--sage)">Optimal plan<b>${r.plan.length} projects</b>₹${r.spent}L · impact ${r.benefit}<br>${r.people} people helped</div><div style="background:var(--lav)">Cheapest-first<b>${r.basic.n} projects</b>₹${r.basic.spent}L · impact ${r.basic.benefit}</div></div><div class="sec"><h2>Recommended actions</h2></div>${r.plan.length?r.plan.map(a=>`<div class="card c" onclick="detail(${a.id})">${ic(a.type)}<div class="grow"><b>${esc(a.name)}</b><span>₹${a.cost}L · impact score ${a.score}</span></div><div class="tag ${a.risk}">${a.risk}</div></div>`).join(''):'<div class="empty">Nothing fits this budget. Try a higher ceiling.</div>'}`;lucide.createIcons()}catch(e){fail(e)}}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')close()});
 go('home');
